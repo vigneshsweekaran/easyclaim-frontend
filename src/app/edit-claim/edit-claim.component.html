@@ -1,0 +1,29 @@
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Edit Claim</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select formControlName="category" name="category" class="form-control" id="category" >
+        <option value="conveyance">Conveyance</option>
+        <option value="food">Food</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="billdate">Bill Date:</label>
+      <input type="date" formControlName="billDate" name="billdate" class="form-control" id="billdate">
+    </div>
+
+    <div class="form-group">
+      <label for="billno">Bill No:</label>
+      <input type="number" formControlName="billNo" placeholder="Bill No" name="billno" min="1" max="10000000" class="form-control" id="billno">
+    </div>
+
+    <div class="form-group">
+      <label for="claimamount">Claim Amount:</label>
+      <input type="number" formControlName="claimAmount" placeholder="Claim Amount" name="claimamount" class="form-control" id="claimamount" min="1" max="300">
+    </div>
+
+    <button class="btn btn-success">Update</button>
+  </form>
+</div>

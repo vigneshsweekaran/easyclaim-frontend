@@ -1,0 +1,27 @@
+<div class="col-md-10 user-container">
+  <h2 style="margin: auto"> Claims </h2>
+  <div class="row row-no-gutters">
+    <div><button class="btn btn-danger" style="width:100px" (click)="addClaim()"> Add Claim</button></div>
+    <div><button class="btn btn-danger" style="width:100px" (click)="addUser()"> Add User</button></div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Category</th>
+      <th>Bill Date</th>
+      <th>Bill No</th>
+      <th>Claim Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let claim of claims">
+      <td>{{claim.category}}</td>
+      <td>{{claim.billDateString}}</td>
+      <td>{{claim.billNo}}</td>
+      <td>{{claim.claimAmount}}</td>
+      <td><button class="btn btn-success" (click)="deleteClaim(claim)"> Delete</button>
+        <button class="btn btn-success" (click)="editClaim(claim)" style="margin-left: 20px;"> Edit</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
