@@ -19,6 +19,9 @@ jobs:
         # Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0
         node-version: 10.0
 
+    - name: Build code
+      run: npm install && npm run cibuild
+
     - name: Build the Docker image
       run: docker build --tag vigneshsweekaran/easyclaim-frontend:latest
 
