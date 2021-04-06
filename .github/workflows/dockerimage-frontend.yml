@@ -1,11 +1,8 @@
-name: Kubectl
+name: easyclaim-frontend
 
 on:
   push:
-    branches: [ master ]
-    paths:
-      - 'kubectl/**'
-  
+    branches: [ kubernetes-configmap-as-volume ]
 
 jobs:
 
@@ -15,12 +12,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2.1.5
+      with:
+        # Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0
+        node-version: 10.0
+
     - name: Build the Docker image
-      run: docker build ./kubectl --file kubectl/Dockerfile --tag vigneshsweekaran/kubectl:latest
+      run: docker build --tag vigneshsweekaran/easyclaim-frontend:latest
+
     - name: Login to Docker Hub
       uses: docker/login-action@v1
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
     - name: Push Docker Image
-      run: docker push vigneshsweekaran/kubectl:latest
+      run: docker push vigneshsweekaran/easyclaim-frontend:latest
