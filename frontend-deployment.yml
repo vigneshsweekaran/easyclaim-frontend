@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: easyclaim-frontend
-  namespace: capstone
+  namespace: easyclaim
   labels:
     name: easyclaim-frontend
 spec:
@@ -30,7 +30,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: easyclaim-frontend-service
-  namespace: capstone
+  namespace: easyclaim
   labels:
     name: easyclaim-frontend-service
 spec:
