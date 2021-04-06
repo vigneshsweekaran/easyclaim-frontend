@@ -1,2 +1,2 @@
-# capstone-easyclaim-frontend
-capstone-easyclaim-frontend
+# Easyclaim frontend
+Easyclaim application UI is developed using Angular Js
