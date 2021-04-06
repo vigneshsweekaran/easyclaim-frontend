@@ -8,11 +8,11 @@ import {ApiResponse} from "../model/api.response";
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-  baseUrlUser: string = 'http://35.188.61.241:32002/users/';
-  baseUrlClaim: string = 'http://35.188.61.241:32002/claims/';
+  baseUrlUser: string = 'http://easyclaim-backend:8080/users/';
+  baseUrlClaim: string = 'http://easyclaim-backend:8080/claims/';
 
   login(loginPayload) : Observable<ApiResponse> {
-    return this.http.post<ApiResponse>('http://35.188.61.241:32002/' + 'token/generate-token', loginPayload);
+    return this.http.post<ApiResponse>('http://easyclaim-backend:8080/' + 'token/generate-token', loginPayload);
   }
 
   getUsers() : Observable<ApiResponse> {
