@@ -45,12 +45,19 @@ pipeline {
                 }
             }
         }
+        stage('Deploy'){
+            steps {
+                sh "docker stop easyclaim-frontend-deploy | true"
+                sh "docker rm easyclaim-frontend-deploy | true"
+                sh "docker run --name easyclaim-frontend-deploy -d -p 9004:80 training-docker-releases/easyclaim-frontend:${TAG}"
+            }
+        }
     }
 	post {
         always {
             sh "docker stop easyclaim-frontend | true"
             sh "docker rm easyclaim-frontend | true"
-            archiveArtifacts artifacts: "functional_result_${env.BUILD_ID}", onlyIfSuccessful: true
+            archiveArtifacts artifacts: "functional_result_${env.BUILD_ID}.html", onlyIfSuccessful: true
             cleanWs()
             slackSend channel: '#capstone-easyclaim', color: COLOR_MAP[currentBuild.currentResult], message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
         }
