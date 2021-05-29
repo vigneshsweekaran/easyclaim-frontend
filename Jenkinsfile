@@ -48,10 +48,10 @@ pipeline {
     }
 	post {
         always {
-            cleanWs()
             sh "docker stop easyclaim-frontend | true"
             sh "docker rm easyclaim-frontend | true"
             archiveArtifacts artifacts: "functional_result_${env.BUILD_ID}", onlyIfSuccessful: true
+            cleanWs()
             slackSend channel: '#capstone-easyclaim', color: COLOR_MAP[currentBuild.currentResult], message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
         }
     }
