@@ -18,7 +18,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("vigneshsweekaran/easyclaim-frontend:${TAG}")
+                    docker.build("training-docker-releases/easyclaim-frontend:${TAG}")
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Functional Testing') {
             steps{
-                sh "docker run --name easyclaim-frontend -d -p 80:80 vigneshsweekaran/easyclaim-frontend:${env.BUILD_ID}"
+                sh "docker run --name easyclaim-frontend -d -p 9003:80 training-docker-releases/easyclaim-frontend:${env.BUILD_ID}"
                 sh "pytest -v -s --html=functional_result_${env.BUILD_ID}.html testing/test_pytest.py"
             }
 	    }
