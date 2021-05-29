@@ -1,7 +1,7 @@
 def COLOR_MAP = ['SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', 'ABORTED': 'danger']
 
 pipeline {
-    agent { label 'master'}
+    agent { label 'slave1'}
     tools { nodejs "NodeJs10.0" }
     environment {
         DATE = new Date().format('yy.M')
