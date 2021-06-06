@@ -1,12 +1,12 @@
 def COLOR_MAP = ['SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', 'ABORTED': 'danger']
 
 pipeline {
-    agent { label 'master'}
+    agent any
     tools { nodejs "nodejs-10.0.0" }
     environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
-        scannerHome = tool 'sonarscanner'
+        // scannerHome = tool 'sonarscanner'
     }
     stages {
         stage('Build') {
