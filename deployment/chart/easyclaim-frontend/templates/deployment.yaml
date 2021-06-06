@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: easyclaim-frontend
+  labels:
+    name: easyclaim-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: easyclaim-frontend-pod
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: easyclaim-frontend-pod
+      labels:
+        name: easyclaim-frontend-pod
+    spec:
+      containers:
+        - name:  easyclaim-frontend
+          image: vigneshsweekaran/easyclaim-frontend:latest
+          imagePullPolicy: Always
