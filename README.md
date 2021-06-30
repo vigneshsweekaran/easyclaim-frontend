@@ -7,7 +7,7 @@ Update the file src/app/core/api.service.ts
 # Deploying Steps
 ### Step 1 : Creating namespace
 ```
-kubectl create namespace eayclaim
+kubectl create namespace easyclaim
 ```
 
 ### Step 2 : Deploying frontend container as deployment
