@@ -14,12 +14,13 @@ def test_login():
     global driver
     driver=webdriver.Chrome("./testing/83/chromedriver", options=option)
     driver.implicitly_wait(10)
-    driver.get('http://localhost:80')
+    driver.get('http://localhost:9003')
     driver.maximize_window()
     driver.find_element_by_id("username").send_keys('vishnu')
     driver.find_element_by_id('pwd').send_keys('vishnu@123')
     driver.find_element_by_xpath('/html/body/app-root/app-login/div/div/form/button').click()
     print(driver.title)
+
 def test_title_check():
     assert (driver.title == 'Easy Claim'), 'title not matched'
     driver.close()
