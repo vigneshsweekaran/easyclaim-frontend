@@ -6,7 +6,6 @@ pipeline {
     environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
-        // scannerHome = tool 'sonarscanner'
     }
     stages {
         stage('Build') {
@@ -23,6 +22,14 @@ pipeline {
             }
         }
 	    stage('SonarQube analysis') {
+            when {
+                expression {
+                    environment name: "TRIGGER_NEXT", value: "true"
+                }
+            }
+            environment {
+                scannerHome = tool 'sonarscanner'
+            }
             steps {
                 withSonarQubeEnv('sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner"
@@ -30,17 +37,32 @@ pipeline {
             }
         }
         stage('Anchore Scanning') {
+            when {
+                expression {
+                    environment name: "TRIGGER_NEXT", value: "true"
+                }
+            }
             steps {
                 echo "Anchore Scanning"
             }
         }
         stage('Functional Testing') {
+            when {
+                expression {
+                    environment name: "TRIGGER_NEXT", value: "true"
+                }
+            }
             steps{
                 sh "docker run --name easyclaim-frontend -d -p 9003:80 training-docker-releases/easyclaim-frontend:${TAG}"
                 sh "pytest -v -s --html=functional_result_${env.BUILD_ID}.html testing/test_pytest.py"
             }
 	    }
 	    stage('Pushing Docker Image to Nexus') {
+            when {
+                expression {
+                    environment name: "TRIGGER_NEXT", value: "true"
+                }
+            }
             steps {
                 script {
                     docker.withRegistry('https://devops.letspractice.tk', 'docker_credential') {
@@ -51,6 +73,11 @@ pipeline {
             }
         }
         stage('Deploy'){
+            when {
+                expression {
+                    environment name: "TRIGGER_NEXT", value: "true"
+                }
+            }
             steps {
                 sh "docker stop easyclaim-frontend-deploy | true"
                 sh "docker rm easyclaim-frontend-deploy | true"

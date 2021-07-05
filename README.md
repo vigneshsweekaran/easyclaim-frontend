@@ -19,3 +19,9 @@ kubectl apply -f frontend-deployment.yml
 * Jenkinsfile-nexus-docker-same-server : Push the docker images to Nexus Repository manager and deploy the docker container to the same server where jenkins was running
 * Jenkinsfile-nexus-docker-diffrent-server-using-ssh : Push the docker images to Nexus Repository manager and deploy the docker container to different server using ssh
 * Jenkinsfile-nexus-docker-diffrent-server-using-ssh_plugin : Push the docker images to Nexus Repository manager and deploy the docker container to different server using ssh_plugin
+
+
+### Url hardcoded for Image tags
+* 32011 --> http://gke-worker.devopspilot.com:32011
+* 32013 --> http://gke-worker.devopspilot.com:32013
+* 32015 --> http://gke-worker.devopspilot.com:32015
