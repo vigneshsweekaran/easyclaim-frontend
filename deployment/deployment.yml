@@ -17,5 +17,5 @@ spec:
     spec:
       containers:
         - name:  easyclaim-frontend
-          image: vigneshsweekaran/easyclaim-frontend:latest
+          image: vigneshsweekaran/easyclaim-frontend:32011
           imagePullPolicy: Always
