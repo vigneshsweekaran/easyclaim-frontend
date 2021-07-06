@@ -2,7 +2,7 @@ name: easyclaim-frontend
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
 
