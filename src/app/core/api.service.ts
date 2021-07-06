@@ -8,11 +8,11 @@ import {ApiResponse} from "../model/api.response";
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-  baseUrlUser: string = 'http://gke-worker.devopspilot.com:32014/users/';
-  baseUrlClaim: string = 'http://gke-worker.devopspilot.com:32014/claims/';
+  baseUrlUser: string = 'http://gke-worker.devopspilot.com:32016/users/';
+  baseUrlClaim: string = 'http://gke-worker.devopspilot.com:32016/claims/';
 
   login(loginPayload) : Observable<ApiResponse> {
-    return this.http.post<ApiResponse>('http://gke-worker.devopspilot.com:32014/' + 'token/generate-token', loginPayload);
+    return this.http.post<ApiResponse>('http://gke-worker.devopspilot.com:32016/' + 'token/generate-token', loginPayload);
   }
 
   getUsers() : Observable<ApiResponse> {
