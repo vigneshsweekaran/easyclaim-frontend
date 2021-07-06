@@ -17,7 +17,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("easyclaim-frontend:${TAG}")
+                    docker.build("vigneshsweekaran/easyclaim-frontend:${TAG}")
                 }
             }
         }
@@ -25,8 +25,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
-                        docker.image("easyclaim-frontend:${TAG}").push()
-                        docker.image("easyclaim-frontend:${TAG}").push("32011")
+                        docker.image("vigneshsweekaran/easyclaim-frontend:${TAG}").push()
+                        docker.image("vigneshsweekaran/easyclaim-frontend:${TAG}").push("32011")
                     }
                 }
             }
