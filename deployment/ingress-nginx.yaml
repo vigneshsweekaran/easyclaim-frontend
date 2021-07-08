@@ -16,5 +16,5 @@ spec:
           servicePort: 80
       - path: /easyclaim-backend
         backend:
-          serviceName: easyclaim-frontend
+          serviceName: easyclaim-backend
           servicePort: 8080

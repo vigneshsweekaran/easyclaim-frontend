@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: easyclaim-frontend-service
+  name: easyclaim-frontend
   labels:
-    name: easyclaim-frontend-service
+    name: easyclaim-frontend
 spec:
   ports:
     - port: 80
       targetPort: 80
       nodePort: 32011
   selector:
-    name: easyclaim-frontend-pod
+    name: easyclaim-frontend
   type: NodePort

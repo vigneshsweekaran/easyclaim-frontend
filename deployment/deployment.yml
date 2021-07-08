@@ -8,14 +8,14 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      name: easyclaim-frontend-pod
+      name: easyclaim-frontend
   template:
     metadata:
-      name: easyclaim-frontend-pod
+      name: easyclaim-frontend
       labels:
-        name: easyclaim-frontend-pod
+        name: easyclaim-frontend
     spec:
       containers:
         - name:  easyclaim-frontend
-          image: vigneshsweekaran/easyclaim-frontend:32013
+          image: vigneshsweekaran/easyclaim-frontend:32015
           imagePullPolicy: Always
