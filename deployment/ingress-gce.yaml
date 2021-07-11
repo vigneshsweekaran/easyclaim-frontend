@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: gce
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: easyclaim
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /easyclaim-frontend
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: easyclaim-frontend
+            port: 
+              number: 80
+      - path: /easyclaim-backend
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: easyclaim-backend
+            port:
+              number: 8080
