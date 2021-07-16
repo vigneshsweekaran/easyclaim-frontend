@@ -1,20 +1,26 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
   name: easyclaim
 spec:
   rules:
-  - host: ingress.devopspilot.com
+  - host: example.com
     http:
       paths:
-      - path: /easyclaim-frontend
+      - path: /easyclaim-frontend(/|$)(.*)
+        pathType: ImplementationSpecific
         backend:
-          serviceName: easyclaim-frontend
-          servicePort: 80
-      - path: /easyclaim-backend
+          service:
+            name: easyclaim-frontend
+            port: 
+              number: 80
+      - path: /easyclaim-backend(/|$)(.*)
+        pathType: ImplementationSpecific
         backend:
-          serviceName: easyclaim-backend
-          servicePort: 8080
+          service:
+            name: easyclaim-backend
+            port:
+              number: 8080

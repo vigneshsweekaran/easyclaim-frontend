@@ -25,3 +25,10 @@ kubectl apply -f frontend-deployment.yml
 * 32011 --> http://gke-worker.devopspilot.com:32012
 * 32013 --> http://gke-worker.devopspilot.com:32014
 * 32015 --> http://gke-worker.devopspilot.com:32016
+
+### Generate load for testing Horizontal Pod Autoscaler
+```
+kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://easyclaim-frontend:80; done"
+```
+
+easyclaim-frontend:80 --> Frontend Servicename and port
