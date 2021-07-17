@@ -12,7 +12,7 @@ export class ApiService {
   baseUrlClaim: string = 'http://easyclaim-backend:32012/claims/';
 
   login(loginPayload) : Observable<ApiResponse> {
-    return this.http.post<ApiResponse>('http://gke-worker.devopspilot.com:32012/' + 'token/generate-token', loginPayload);
+    return this.http.post<ApiResponse>('http://easyclaim-backend:32012/' + 'token/generate-token', loginPayload);
   }
 
   getUsers() : Observable<ApiResponse> {
