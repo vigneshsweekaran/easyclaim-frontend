@@ -26,7 +26,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
                         docker.image("vigneshsweekaran/easyclaim-frontend:${TAG}").push()
-                        docker.image("vigneshsweekaran/easyclaim-frontend:${TAG}").push("32015")
+                        docker.image("vigneshsweekaran/easyclaim-frontend:${TAG}").push("32011")
                     }
                 }
             }
