@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +14,11 @@ import {TokenInterceptor} from "./core/interceptor";
 import { ListClaimComponent } from './list-claim/list-claim.component';
 import { AddClaimComponent } from './add-claim/add-claim.component';
 import { EditClaimComponent } from './edit-claim/edit-claim.component';
+import { ConfigService } from './core/config.service';
+
+export function initConfig(config: ConfigService) {
+  return () => config.loadConfig();
+}
 
 @NgModule({
   declarations: [
@@ -34,7 +39,12 @@ import { EditClaimComponent } from './edit-claim/edit-claim.component';
   ],
   providers: [ApiService, {provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
-    multi : true}],
+    multi : true}, {
+    provide: APP_INITIALIZER,
+    useFactory: initConfig,
+    deps: [ConfigService],
+    multi: true,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
