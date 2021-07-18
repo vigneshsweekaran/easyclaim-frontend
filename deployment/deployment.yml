@@ -17,8 +17,11 @@ spec:
     spec:
       containers:
         - name:  easyclaim-frontend
-          image: vigneshsweekaran/easyclaim-frontend:32011
+          image: vigneshsweekaran/easyclaim-frontend:latest
           imagePullPolicy: Always
+          volumeMounts:
+          - name: config-volume
+            mountPath: "/usr/share/nginx/html/assets"
           resources:
             requests:
               memory: "64Mi"
@@ -26,3 +29,10 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "500m"
+      volumes:
+      - name: config-volume
+        configMap:
+          name: easyclaim-frontend
+          items:
+          - key: config
+            path: config.json
