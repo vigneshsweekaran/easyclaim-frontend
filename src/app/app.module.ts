@@ -37,23 +37,23 @@ export function initConfig(config: ConfigService) {
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ApiService, {provide: HTTP_INTERCEPTORS,
+  providers: [{
+    provide: APP_INITIALIZER,
+    multi: true,
+    deps: [ConfigService, ApiService],
+    useFactory: (
+      configSvc: ConfigService,
+      settingsService: ApiService
+    ) => {
+      return () => {
+        return configSvc.loadConfig().then(config => {
+          return settingsService.loadConfig(config);
+        });
+      };
+    }
+  }, ApiService, {provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
-    multi : true}, {
-      provide: APP_INITIALIZER,
-      multi: true,
-      deps: [ConfigService, ApiService],
-      useFactory: (
-        configSvc: ConfigService,
-        settingsService: ApiService
-      ) => {
-        return () => {
-          return configSvc.loadConfig().then(config => {
-            return settingsService.loadConfig(config);
-          });
-        };
-      }
-    }],
+    multi : true},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
