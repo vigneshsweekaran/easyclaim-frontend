@@ -40,10 +40,19 @@ export function initConfig(config: ConfigService) {
   providers: [ApiService, {provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi : true}, {
-    provide: APP_INITIALIZER,
-    useFactory: initConfig,
-    deps: [ConfigService],
-    multi: true,
+      provide: APP_INITIALIZER,
+      multi: true,
+      deps: [ConfigService, ApiService],
+      useFactory: (
+        configSvc: ConfigService,
+        settingsService: ApiService
+      ) => {
+        return () => {
+          return configSvc.loadConfig().then(config => {
+            return settingsService.loadConfig(config);
+          });
+        };
+      }
     }],
   bootstrap: [AppComponent]
 })
