@@ -2,7 +2,9 @@ name: easyclaim-frontend
 
 on:
   push:
-    branches: [ master, kubernetes-configmap-as-volume ]
+    branches: 
+      - master
+      - kubernetes-configmap-as-volume
 
 jobs:
 
