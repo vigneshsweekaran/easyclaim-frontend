@@ -8,11 +8,25 @@ import {ApiResponse} from "../model/api.response";
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-  baseUrlUser: string = 'http://easyclaim-backend:32012/users/';
-  baseUrlClaim: string = 'http://easyclaim-backend:32012/claims/';
+
+  authConfig: any;
+  async loadConfig(config: any) {
+    this.authConfig = config.authConfig;
+    return this.authConfig;
+  }
+
+  get getBackendUrl(): string {
+    if (!this.authConfig) {
+      console.error("config could not be loaded from app config servcie.");
+    }
+    return this.authConfig.backendUrl;
+  }
+
+  baseUrlUser: string = this.getBackendUrl + '/users/';
+  baseUrlClaim: string = this.getBackendUrl + '/claims/';
 
   login(loginPayload) : Observable<ApiResponse> {
-    return this.http.post<ApiResponse>('http://easyclaim-backend:32012/' + 'token/generate-token', loginPayload);
+    return this.http.post<ApiResponse>(this.getBackendUrl + '/token/generate-token', loginPayload);
   }
 
   getUsers() : Observable<ApiResponse> {
