@@ -8,6 +8,6 @@ data:
   config: |-
     {
       "authConfig": {
-        "backendUrl": "http://easyclaim-backend:32012"
+        "backendUrl": "http://192.68.0.0:32012"
       }
     }
