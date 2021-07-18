@@ -1,5 +1,5 @@
 {
     "authConfig": {
-      "backendUrl": "http://easyclaim-backend:32000"
+      "backendUrl": "http://easyclaim-backend:32012"
     }
 }
