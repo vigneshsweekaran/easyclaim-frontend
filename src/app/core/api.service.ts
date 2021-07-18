@@ -3,32 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import {User} from "../model/user.model";
 import {Observable} from "rxjs/index";
 import {ApiResponse} from "../model/api.response";
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: "root"
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
-  authConfig: any;
-  async loadConfig(config: any) {
-    this.authConfig = config.authConfig;
-    return this.authConfig;
-  }
-
-  get getBackendUrl(): string {
-    if (!this.authConfig) {
-      console.error("config could not be loaded from app config servcie.");
-    }
-    return this.authConfig.backendUrl;
-  }
-
-  baseUrlUser: string = this.getBackendUrl + '/users/';
-  baseUrlClaim: string = this.getBackendUrl + '/claims/';
+  
+  baseUrlUser: string = this.authService.getBackendUrl + '/users/';
+  baseUrlClaim: string = this.authService.getBackendUrl + '/claims/';
 
   login(loginPayload) : Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(this.getBackendUrl + '/token/generate-token', loginPayload);
+    return this.http.post<ApiResponse>(this.authService.getBackendUrl + '/token/generate-token', loginPayload);
   }
 
   getUsers() : Observable<ApiResponse> {

@@ -15,10 +15,7 @@ import { ListClaimComponent } from './list-claim/list-claim.component';
 import { AddClaimComponent } from './add-claim/add-claim.component';
 import { EditClaimComponent } from './edit-claim/edit-claim.component';
 import { ConfigService } from './core/config.service';
-
-export function initConfig(config: ConfigService) {
-  return () => config.loadConfig();
-}
+import { AuthService } from './core/auth.service';
 
 @NgModule({
   declarations: [
@@ -40,10 +37,10 @@ export function initConfig(config: ConfigService) {
   providers: [{
     provide: APP_INITIALIZER,
     multi: true,
-    deps: [ConfigService, ApiService],
+    deps: [ConfigService, AuthService],
     useFactory: (
       configSvc: ConfigService,
-      settingsService: ApiService
+      settingsService: AuthService
     ) => {
       return () => {
         return configSvc.loadConfig().then(config => {
