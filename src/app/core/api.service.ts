@@ -3,16 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import {User} from "../model/user.model";
 import {Observable} from "rxjs/index";
 import {ApiResponse} from "../model/api.response";
+import { AuthService } from './auth.service';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
-  baseUrlUser: string = 'http://easyclaim-backend:32012/users/';
-  baseUrlClaim: string = 'http://easyclaim-backend:32012/claims/';
+  constructor(private http: HttpClient, private authService: AuthService) { }
+
+  
+  baseUrlUser: string = this.authService.getBackendUrl + '/users/';
+  baseUrlClaim: string = this.authService.getBackendUrl + '/claims/';
 
   login(loginPayload) : Observable<ApiResponse> {
-    return this.http.post<ApiResponse>('http://easyclaim-backend:32012/' + 'token/generate-token', loginPayload);
+    return this.http.post<ApiResponse>(this.authService.getBackendUrl + '/token/generate-token', loginPayload);
   }
 
   getUsers() : Observable<ApiResponse> {

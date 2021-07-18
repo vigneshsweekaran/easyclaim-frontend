@@ -5,7 +5,7 @@ Easyclaim application UI is developed using Angular Js
 Update the file src/app/core/api.service.ts
 
 # Deploying Steps
-### Step 1 : Creating namespace
+### Step 1 : Creating namespace 
 ```
 kubectl create namespace easyclaim
 ```

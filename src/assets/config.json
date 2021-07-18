@@ -1,5 +1,5 @@
 {
     "authConfig": {
-      "authUrl": "AUTH_URL"
+      "backendUrl": "http://easyclaim-backend:32012"
     }
 }

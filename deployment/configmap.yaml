@@ -1,0 +1,13 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: easyclaim-frontend
+  labels:
+    name: easyclaim-frontend
+data:
+  config: |-
+    {
+      "authConfig": {
+        "backendUrl": "http://easyclaim-backend:32012"
+      }
+    }
